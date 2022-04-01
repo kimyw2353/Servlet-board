@@ -2,6 +2,8 @@ package dbUtil;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class DBUtils {
     public static Connection getConnection(){
@@ -16,4 +18,12 @@ public class DBUtils {
         }
         return null;
     }
+
+    public void closeConnection(ResultSet rs, PreparedStatement ps , Connection conn){
+        if( ps != null) try{ rs.close();} catch (Exception e){};
+        if( ps != null) try{ ps.close();} catch (Exception e){};
+        if( ps != null) try{ conn.close();} catch (Exception e){};
+    }
+
+
 }

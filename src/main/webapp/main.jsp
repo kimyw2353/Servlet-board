@@ -7,7 +7,7 @@
 </head>
 <body style="text-align: center">
 <h1>Main Page</h1>
-<button onclick='location.href="users/join.jsp";'>회원가입</button>
+<button onclick='location.href="join.do";'>회원가입</button>
 <button onclick='location.href="users/login.jsp";'>로그인</button>
 </body>
 </html>

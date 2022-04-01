@@ -2,7 +2,7 @@ package domain;
 
 import java.sql.Date;
 
-public class UsersDTO {
+public class UsersVO {
 
     private String id; //회원번호
     private String email;
@@ -10,6 +10,23 @@ public class UsersDTO {
     private String password; //비밀번호
     private Date create_at;
     private Date update_at;
+
+    public UsersVO(String id, String email, String name, String password) {
+        this.id = id;
+        this.email = email;
+        this.name = name;
+        this.password = password;
+    }
+
+    public UsersVO(String id, String email, String name, String password, Date create_at, Date update_at) {
+        this.id = id;
+        this.email = email;
+        this.name = name;
+        this.password = password;
+        this.create_at = create_at;
+        this.update_at = update_at;
+    }
+
 
     public String getId() {
         return id;

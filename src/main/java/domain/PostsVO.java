@@ -2,7 +2,7 @@ package domain;
 
 import java.sql.Date;
 
-public class PostsDTO {
+public class PostsVO {
     
     private int id; //글번호
     private String title;
