@@ -12,7 +12,7 @@
 
     <h2>Join Page</h2>
     <form action="${pageContext.request.contextPath}/join" method="post" id="joinF" style="text-align: left; width: 500px;margin: 0 auto;">
-    <table style="width: 500px; margin: 0 auto;">
+    <table style="text-align: right; width: 500px; margin: 0 auto;">
         <tr>
             <td class="col_1">아이디</td>
             <td class="col_2"><input oninput="checkId()" type="text" id="userid" name="userid" placeholder="아이디를 입력해주세요."></td>

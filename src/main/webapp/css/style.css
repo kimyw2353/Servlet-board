@@ -1,3 +1,15 @@
+/*-- Main --*/
+/*-- Login --*/
+.right{
+    text-align: right;
+}
+.left{
+    text-align: left;
+}
+.center{
+    text-align: center;
+}
+/*-- Join --*/
 #id_ok{
     color: #fff;
     font-size: 11px;
@@ -7,3 +19,6 @@
     display: none;
     font-size: 11px;
 }
+/*-- Board --*/
+/*-- EditUser --*/
+

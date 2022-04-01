@@ -8,8 +8,8 @@
 </head>
 <body style="text-align: center;">
     <h2>Login Page</h2>
-    <form action="${pageContext.request.contextPath}/" method="post" id="loginF">
-        <table>
+    <form action="${pageContext.request.contextPath}/" method="post" id="loginF" style="text-align: left; width: 500px;margin: 0 auto;">
+        <table style="width: 500px;margin: 0 auto;">
             <tr>
                 <td class="col_1">아이디 : </td>
                 <td class="col_2">

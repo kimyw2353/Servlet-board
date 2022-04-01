@@ -8,22 +8,22 @@
 </head>
 <body style="text-align: center;">
     <h2>Login Page</h2>
-    <form action="${pageContext.request.contextPath}/" method="post" id="loginF">
-        <table>
+    <form action="${pageContext.request.contextPath}/" method="post" id="loginF" style="text-align: left; width: 500px;margin: 0 auto;">
+        <table style="width: 500px;margin: 0 auto;">
             <tr>
-                <td class="col_1">아이디 : </td>
-                <td class="col_2">
+                <td class="col_1 right">아이디 : </td>
+                <td class="col_2 left">
                     <input type="text" id="input_id" placeholder="아이디를 입력하세요.">
                 </td>
             </tr>
             <tr>
-                <td class="col_1">비밀번호 : </td>
-                <td class="col_2">
+                <td class="col_1 right">비밀번호 : </td>
+                <td class="col_2 left">
                     <input type="text" id="input_pw" placeholder="아이디를 입력하세요.">
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="center">
                     <button class="btn" id="submit_btn" type="button" onclick="loginCheck()">로그인</button>
                     <button class="btn" type="button" onclick="location.href='/main'">홈으로</button>
                 </td>
