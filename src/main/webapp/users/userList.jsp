@@ -1,16 +1,29 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Purple
-  Date: 2022-04-04
-  Time: 오후 1:53
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Title</title>
 </head>
 <body>
-회원 리스트
+<h2 style="text-align: center">User List</h2>
+<table class="listT">
+    <tr>
+        <td>아이디</td>
+        <td>이름</td>
+        <td>이메일</td>
+        <td>가입일</td>
+        <td>수정일</td>
+    </tr>
+    <c:forEach items="${userList}" var="list">
+    <tr>
+        <td>${list.id}</td>
+        <td>${list.name}</td>
+        <td>${list.email}</td>
+        <td>${list.create_at}</td>
+        <td>${list.update_at}</td>
+    </tr>
+
+    </c:forEach>
+</table>
 </body>
 </html>

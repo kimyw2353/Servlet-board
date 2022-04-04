@@ -25,7 +25,7 @@
             <tr>
                 <td class="center" colspan="2">
                     <button class="btn" id="submit_btn" type="button" onclick="loginCheck()">로그인</button>
-                    <button class="btn" type="button" onclick="location.href='/main'">홈으로</button>
+                    <button class="btn" type="button" onclick="location.href='/main.do'">홈으로</button>
                 </td>
             </tr>
         </table>

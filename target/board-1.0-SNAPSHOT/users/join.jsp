@@ -48,7 +48,7 @@
             <td colspan="2">
                 <div class="center">
                     <button class="btn" id="submit_btn" type="button" onclick="joinCheck()">회원가입</button>
-                    <button class="btn" type="button" onclick="location.href='/main'">홈으로</button>
+                    <button class="btn" type="button" onclick="location.href='/main.do'">홈으로</button>
                 </div>
             </td>
         </tr>

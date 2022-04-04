@@ -86,22 +86,22 @@ public class UserDAO extends DBUtils {
     //회원정보 수정
 
     //모든 회원정보 불러오기 - ArrayList로 UsersVO
-    public List<UsersVO> selectAllUserList(UsersVO vo){
+    public List<UsersVO> selectAllUserList(){
         List<UsersVO> userList = new ArrayList<UsersVO>();
         String SQL = "SELECT * FROM USERS";
         try{
             conn = getConnection();
             pstmt = conn.prepareStatement(SQL);
             rs = pstmt.executeQuery();
+            UsersVO vo;
             while (rs.next()){
+                vo = new UsersVO();
                 vo.setId(rs.getString("id"));
                 vo.setPassword(rs.getString("password"));
                 vo.setEmail(rs.getString("name"));
                 vo.setName(rs.getString("email"));
-                vo.setCreate_at(Date.valueOf(rs.getString("create_at")));
-                vo.setUpdate_at(Date.valueOf(rs.getString("update_at")));
-
-                System.out.println(vo.toString());
+                vo.setCreate_at(rs.getDate("create_at"));
+                vo.setUpdate_at(rs.getDate("update_at"));
                 userList.add(vo);
             }
         }catch (Exception e){

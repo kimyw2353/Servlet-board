@@ -23,8 +23,8 @@ public class UserListController extends HttpServlet {
         }
         UserDAO userDAO = new UserDAO();
         UsersVO usersVO = new UsersVO();
-        List<UsersVO> list = userDAO.selectAllUserList(usersVO);
-        request.setAttribute("userList", list);
+        List<UsersVO> userList = userDAO.selectAllUserList();
+        request.setAttribute("userList", userList);
 
         String path = "users/userList.jsp";
         RequestDispatcher rd = request.getRequestDispatcher(path);

@@ -38,6 +38,18 @@ table tr td input{
     width: 250px;
     height: 40px;
 }
+/*-- User List --*/
+.listT{
+    width: 800px;
+    margin: 0 auto;
+    border-top: 1px solid #888;
+    border-collapse: collapse;
+}
+.listT tr td{
+    border-bottom: 1px solid #888;
+    padding: 8px;
+
+}
 /*-- Board --*/
 /*-- EditUser --*/
 
