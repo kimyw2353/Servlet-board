@@ -19,7 +19,7 @@ public class DBUtils {
         return null;
     }
 
-    public void closeConnection(ResultSet rs, PreparedStatement ps , Connection conn){
+    public void close(ResultSet rs, PreparedStatement ps , Connection conn){
         if( ps != null) try{ rs.close();} catch (Exception e){};
         if( ps != null) try{ ps.close();} catch (Exception e){};
         if( ps != null) try{ conn.close();} catch (Exception e){};

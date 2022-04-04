@@ -45,28 +45,13 @@ public class JoinController extends HttpServlet {
         if(request.getParameter("email")!=null){
             email = (String)request.getParameter("email");
         }
-        if(userId==null){
-            PrintWriter script = response.getWriter();
-            script.println("<script>");
-            script.println("alert('아이디를 입력해주세요.')");
-            script.println("</script>");
-            script.close();
 
-        }
-        if(userPw==null){
-            PrintWriter script = response.getWriter();
-            script.println("<script>");
-            script.println("alert('비밀번호를 입력해주세요.')");
-            script.println("</script>");
-            script.close();
-            return;
-        }
         UsersVO vo = new UsersVO(userId, userPw, name, email);
         UserDAO userDAO = new UserDAO();
         int result = userDAO.insertUserData(vo);
 
         String str=(result>0)?"회원가입 성공":"회원가입 실패";
-        String loc=(result>0)?"login":"javascript:history.back()";
+        String loc=(result>0)?"login.do":"javascript:history.back()";
 
         request.setAttribute("msg",str);
         request.setAttribute("loc",loc);

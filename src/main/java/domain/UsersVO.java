@@ -5,24 +5,24 @@ import java.sql.Date;
 public class UsersVO {
 
     private String id; //회원번호
-    private String email;
-    private String name; //이름
     private String password; //비밀번호
+    private String name; //이름
+    private String email;
     private Date create_at;
     private Date update_at;
 
-    public UsersVO(String id, String email, String name, String password) {
+    public UsersVO(String id, String password, String name, String email) {
         this.id = id;
-        this.email = email;
-        this.name = name;
         this.password = password;
+        this.name = name;
+        this.email = email;
     }
 
-    public UsersVO(String id, String email, String name, String password, Date create_at, Date update_at) {
+    public UsersVO(String id, String password, String name, String email, Date create_at, Date update_at) {
         this.id = id;
+        this.password = password;
         this.email = email;
         this.name = name;
-        this.password = password;
         this.create_at = create_at;
         this.update_at = update_at;
     }

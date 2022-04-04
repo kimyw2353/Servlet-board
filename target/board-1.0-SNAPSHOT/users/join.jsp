@@ -11,56 +11,48 @@
 <body style="text-align: center;">
 
     <h2>Join Page</h2>
-    <form action="${pageContext.request.contextPath}/join" method="post" id="joinF" style="text-align: left; width: 500px;margin: 0 auto;">
+    <form action="${pageContext.request.contextPath}/join.do" method="post" id="joinF" style="text-align: left; width: 500px;margin: 0 auto;">
     <table style="text-align: right; width: 500px; margin: 0 auto;">
         <tr>
-            <td class="col_1">아이디</td>
-            <td class="col_2"><input oninput="checkId()" type="text" id="userid" name="userid" placeholder="아이디를 입력해주세요."></td>
+            <td class="col_1">아 이 디</td>
+            <td class="col_2 left"><input oninput="checkId()" class="inputT" type="text" id="userid" name="userid" placeholder="아이디를 입력해주세요."></td>
         </tr>
         <tr>
             <td class="col_1"></td>
-            <td class="col_2">
+            <td class="col_2 left">
                 <span id="id_ok">사용 가능한 아이디입니다.</span>
                 <span id="id_already">이미 사용중인 아이디입니다.</span>
             </td>
         </tr>
         <tr>
-            <td class="col_1">비밀번호</td>
-            <td class="col_2"><input type="text" id="userpw" name="userpw"
+            <td class="col_1">비 밀 번 호</td>
+            <td class="col_2 left"><input type="password" class="inputT" id="userpw" name="userpw"
             placeholder="6~13자리 영문,숫자,특수문자"></td>
         </tr>
         <tr>
-            <td class="col_1">비밀번호확인</td>
-            <td class="col_2"><input type="text" id="checkpw" name="checkpw"
-            placeholder="비밀번호를 입력해주세요"></td>
+            <td class="col_1" style="font-size: 17px;">비밀번호확인</td>
+            <td class="col_2 left"><input type="password" class="inputT" id="checkpw" name="checkpw"
+            placeholder="비밀번호를 입력해주세요."></td>
         </tr>
         <tr>
-            <td class="col_1">이름</td>
-            <td class="col_2"><input type="text" id="name" name="name"></td>
+            <td class="col_1">이&nbsp;&nbsp; 름</td>
+            <td class=" left"><input type="text" class="inputT" id="name" name="name"
+            placeholder="이름을 입력해주세요."></td>
         </tr>
         <tr>
-            <td class="col_1">이메일</td>
-            <td class="col_2"><input type="text" id="email" name="email"></td>
+            <td class="col_1">이 메 일</td>
+            <td class=" left"><input type="text" class="inputT" id="email" name="email"
+            placeholder="이메일을 입력해주세요."></td>
         </tr>
         <tr>
-            <td>
-                <button class="btn" id="submit_btn" type="button" onclick="joinCheck()">회원가입</button>
-                <button class="btn" type="button" onclick="location.href='/main'">홈으로</button>
+            <td colspan="2">
+                <div class="center">
+                    <button class="btn" id="submit_btn" type="button" onclick="joinCheck()">회원가입</button>
+                    <button class="btn" type="button" onclick="location.href='/main'">홈으로</button>
+                </div>
             </td>
         </tr>
     </table>
-        <!--
-        <div>
-            <label for="email">이메일</label>
-            <input type="text" id="email" name="email" size="15">
-            <input type="text" id="email_add" name="email_add" size="15">
-            <select name="email_sel" id="email_sel" onchange="change_email()";>
-                <option value="">--직접입력--</option>
-                <option value="naver.com">naver.com</option>
-                <option value="gmail.com">gmail.com</option>
-                <option value="daum.net">daum.net</option>
-            </select>
-        </div>-->
     </form>
 </body>
 <script>
@@ -96,53 +88,53 @@
 
 
     function joinCheck() {
-    const userid = document.getElementById('userid');
-    const userpw = document.getElementById('userpw');
-    const checkpw = document.getElementById('checkpw');
-    const name = document.getElementById('name');
-    const email = document.getElementById('email');
-    console.log(inputId);
-    if (!userid.value){
-        alert('아이디를 입력해주세요');
-        userid.focus();
-        return false;
-    }
-    if(inputId==0){
+        const userid = document.getElementById('userid');
+        const userpw = document.getElementById('userpw');
+        const checkpw = document.getElementById('checkpw');
+        const name = document.getElementById('name');
+        const email = document.getElementById('email');
         console.log(inputId);
-        alert('다른 아이디를 입력해주세요.');
-        userid.focus();
-        return false;
-    }
-    if (!userpw.value){
-        alert('비밀번호를 입력해주세요');
-        userid.focus();
-        return false;
-    }
-    //비밀번호 정규식
-    const pwCheck = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@!%*#?&])[A-Za-z\d$@!%*#?&]{6,13}$/;
+        if (!userid.value){
+            alert('아이디를 입력해주세요');
+            userid.focus();
+            return false;
+        }
+        if(inputId==0){
+            console.log(inputId);
+            alert('다른 아이디를 입력해주세요.');
+            userid.focus();
+            return false;
+        }
+        if (!userpw.value){
+            alert('비밀번호를 입력해주세요');
+            userid.focus();
+            return false;
+        }
+        //비밀번호 정규식
+        const pwCheck = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@!%*#?&])[A-Za-z\d$@!%*#?&]{6,13}$/;
 
-    if (!pwCheck.test(userpw.value)){
-        alert('비밀번호는 영문자+숫자+특수문자 조합으로 6~13자리로 입력해주세요.');
-        userpw.focus();
-        return false;
-    }
-    if (checkpw.value!==userpw.value){
-        alert('비밀번호가 일치하지 않습니다.');
-        checkpw.focus();
-        return false;
-    }
-    if (!name.value){
-        alert('이름을 입력해주세요.');
-        name.focus();
-        return false;
-    }
-    if (!email.value){
-        alert('이메일을 입력해주세요.');
-        checkpw.focus();
-        return false;
-    }
+        if (!pwCheck.test(userpw.value)){
+            alert('비밀번호는 영문자+숫자+특수문자 조합으로 6~13자리로 입력해주세요.');
+            userpw.focus();
+            return false;
+        }
+        if (checkpw.value!==userpw.value){
+            alert('비밀번호가 일치하지 않습니다.');
+            checkpw.focus();
+            return false;
+        }
+        if (!name.value){
+            alert('이름을 입력해주세요.');
+            name.focus();
+            return false;
+        }
+        if (!email.value){
+            alert('이메일을 입력해주세요.');
+            checkpw.focus();
+            return false;
+        }
 
-    document.getElementById('joinF').submit();
+        document.getElementById('joinF').submit();
     }
     //이메일 자동완성
     //function change_email(){
