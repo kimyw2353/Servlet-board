@@ -1,6 +1,6 @@
 package userController;
 
-import users.DAO.UserDAO;
+import myDAO.UserDAO;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -8,7 +8,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 
 @WebServlet(name = "/checkId.do", value = "/checkId")
-public class CheckUserController extends HttpServlet {
+public class CheckIdController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -1,10 +1,12 @@
-package users.DAO;
+package myDAO;
 
 import dbUtil.DBUtils;
 import domain.UsersVO;
 import org.hibernate.annotations.common.util.impl.LoggerFactory;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAO extends DBUtils {
     private Connection conn = null;
@@ -52,7 +54,7 @@ public class UserDAO extends DBUtils {
         }catch (Exception e){
             e.printStackTrace();
         }finally {
-            close(rs, pstmt,conn);
+            close(rs, pstmt, conn);
         }
         return -1;
     }
@@ -83,5 +85,30 @@ public class UserDAO extends DBUtils {
 
     //회원정보 수정
 
-    //모든 회원정보 불러오기 - ArrayList로 UsersDTO
+    //모든 회원정보 불러오기 - ArrayList로 UsersVO
+    public List<UsersVO> selectAllUserList(UsersVO vo){
+        List<UsersVO> userList = new ArrayList<UsersVO>();
+        String SQL = "SELECT * FROM USERS";
+        try{
+            conn = getConnection();
+            pstmt = conn.prepareStatement(SQL);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                vo.setId(rs.getString("id"));
+                vo.setPassword(rs.getString("password"));
+                vo.setEmail(rs.getString("name"));
+                vo.setName(rs.getString("email"));
+                vo.setCreate_at(Date.valueOf(rs.getString("create_at")));
+                vo.setUpdate_at(Date.valueOf(rs.getString("update_at")));
+
+                System.out.println(vo.toString());
+                userList.add(vo);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(rs, pstmt, conn);
+        }
+        return userList;
+    }
 }

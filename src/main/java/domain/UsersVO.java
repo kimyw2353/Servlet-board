@@ -11,6 +11,10 @@ public class UsersVO {
     private Date create_at;
     private Date update_at;
 
+    public UsersVO(){
+
+    }
+
     public UsersVO(String id, String password, String name, String email) {
         this.id = id;
         this.password = password;
@@ -27,21 +31,20 @@ public class UsersVO {
         this.update_at = update_at;
     }
 
-
     public String getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = String.valueOf(id);
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPassword() {
+        return password;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {
@@ -52,12 +55,12 @@ public class UsersVO {
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Date getCreate_at() {
@@ -75,5 +78,20 @@ public class UsersVO {
     public void setUpdate_at(Date update_at) {
         this.update_at = update_at;
     }
+
+    @Override
+    public String toString() {
+        return "UsersVO{" +
+                "id='" + id + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", create_at=" + create_at +
+                ", update_at=" + update_at +
+                '}';
+    }
+
+
+
 
 }

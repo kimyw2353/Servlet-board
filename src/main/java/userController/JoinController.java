@@ -1,13 +1,12 @@
 package userController;
 
 import domain.UsersVO;
-import users.DAO.UserDAO;
+import myDAO.UserDAO;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 @WebServlet(name = "/join.do", value = "/join.do")
 public class JoinController extends HttpServlet {
@@ -50,10 +49,10 @@ public class JoinController extends HttpServlet {
         UserDAO userDAO = new UserDAO();
         int result = userDAO.insertUserData(vo);
 
-        String str=(result>0)?"회원가입 성공":"회원가입 실패";
+        String msg=(result>0)?"회원가입 성공":"회원가입 실패";
         String loc=(result>0)?"login.do":"javascript:history.back()";
 
-        request.setAttribute("msg",str);
+        request.setAttribute("msg",msg);
         request.setAttribute("loc",loc);
 
         String path="/msg/msg.jsp";

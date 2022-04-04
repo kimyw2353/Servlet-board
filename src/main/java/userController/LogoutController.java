@@ -16,7 +16,7 @@ public class LogoutController extends HttpServlet {
         if(session.getAttribute("loginUserId")!=null){
             session.removeAttribute("loginUserId");
             msg="로그아웃되었습니다.";
-            loc = "main";
+            loc = "main.do";
         }
 
         request.setAttribute("msg", msg);

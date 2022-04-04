@@ -1,15 +1,14 @@
 package userController;
 
-import com.sun.org.slf4j.internal.LoggerFactory;
 import domain.UsersVO;
-import users.DAO.UserDAO;
+import myDAO.UserDAO;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "/login.do", value = "/login.do")
+@WebServlet("/login.do")
 public class
 LoginController extends HttpServlet {
     @Override
@@ -48,7 +47,7 @@ LoginController extends HttpServlet {
         }else if(result==1){ //로그인 성공
             session.setAttribute("loginUserId", inputId);
             msg = (String)session.getAttribute("loginUserId")+"님 환영합니다.";
-            loc = "main";
+            loc = "main.do";
         }
 
         request.setAttribute("msg", msg);
