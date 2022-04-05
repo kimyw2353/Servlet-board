@@ -88,7 +88,7 @@ public class UserDAO extends DBUtils {
     //모든 회원정보 불러오기 - ArrayList로 UsersVO
     public List<UsersVO> selectAllUserList(){
         List<UsersVO> userList = new ArrayList<UsersVO>();
-        String SQL = "SELECT * FROM USERS";
+        String SQL = "SELECT * FROM USERS ORDER BY BINARY(name)";
         try{
             conn = getConnection();
             pstmt = conn.prepareStatement(SQL);
@@ -98,8 +98,8 @@ public class UserDAO extends DBUtils {
                 vo = new UsersVO();
                 vo.setId(rs.getString("id"));
                 vo.setPassword(rs.getString("password"));
-                vo.setEmail(rs.getString("name"));
-                vo.setName(rs.getString("email"));
+                vo.setEmail(rs.getString("email"));
+                vo.setName(rs.getString("name"));
                 vo.setCreate_at(rs.getDate("create_at"));
                 vo.setUpdate_at(rs.getDate("update_at"));
                 userList.add(vo);
