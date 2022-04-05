@@ -69,7 +69,7 @@
                 if (result == 1) {
                     $('#id_already').css('display', 'none');
                     $('#id_ok').css('display', 'block');
-                    $('#id_ok').css('color', '#459405');
+                    $('#id_ok').css('color', '#397a07');
                     inputId = 1;
                     console.log("inputId : " + inputId);
                 } else {
