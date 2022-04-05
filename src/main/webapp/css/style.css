@@ -45,11 +45,6 @@ table tr td input{
     border-top: 1px solid #888;
     border-collapse: collapse;
 }
-.listT tr td{
-    border-bottom: 1px solid #888;
-    padding: 8px;
-
-}
 /*-- Board --*/
 /*-- EditUser --*/
 

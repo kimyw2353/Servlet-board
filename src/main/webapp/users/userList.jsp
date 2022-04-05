@@ -8,11 +8,11 @@
 <h2 style="text-align: center">User List</h2>
 <table class="listT">
     <tr>
-        <td>아이디</td>
-        <td>이름</td>
-        <td>이메일</td>
-        <td>가입일</td>
-        <td>수정일</td>
+        <td class="th" id="td_id">아이디</td>
+        <td class="th" id="td_name">이름</td>
+        <td class="th" id="td_email">이메일</td>
+        <td class="th" id="td_create">가입일</td>
+        <td class="th" id="td_update">수정일</td>
     </tr>
     <c:forEach items="${userList}" var="list">
     <tr>

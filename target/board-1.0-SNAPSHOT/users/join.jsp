@@ -1,13 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<html>
-
-<head>
-    <title>서블릿 회원가입</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <script type="text/javascript" src="../js/jquery-1.12.1.min.js"></script>
-    <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
-</head>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:import url="../top.jsp" />
 <body style="text-align: center;">
 
     <h2>Join Page</h2>
@@ -147,4 +140,4 @@
  //       email_add.value = val;
  //   }
 </script>
-</html>
+<c:import url="../foot.jsp" />

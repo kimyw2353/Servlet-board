@@ -1,13 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<html>
-
-<head>
-    <title>서블릿 회원가입</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <script type="text/javascript" src="../js/jquery-1.12.1.min.js"></script>
-    <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
-</head>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:import url="../top.jsp" />
 <body style="text-align: center;">
 
     <h2>Join Page</h2>
@@ -136,15 +129,5 @@
 
         document.getElementById('joinF').submit();
     }
-    //이메일 자동완성
-    //function change_email(){
-      //  const email_add = document.getElementById('email_add');
-        //const email_sel = document.getElementById('email_sel');
-//
-  //      const idx = email_sel.options.selectedIndex; //선택된 옵션순서
-    //    const val = email_sel.options[idx].value;    //선택된 옵션 값
-
- //       email_add.value = val;
- //   }
 </script>
-</html>
+<c:import url="../foot.jsp" />

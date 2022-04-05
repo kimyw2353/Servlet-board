@@ -1,11 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Main - 환영합니다</title>
-</head>
+<c:import url="top.jsp" />
 <body style="text-align: center">
 <h1>Main Page</h1>
 <c:if test="${loginUserId eq null}">
@@ -19,4 +14,4 @@
     <h4>[${loginUserId}]님 로그인중. . .</h4>
 </c:if>
 </body>
-</html>
+<c:import url="foot.jsp" />
