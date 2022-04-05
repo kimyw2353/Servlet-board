@@ -1,6 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:import url="../top.jsp" />
+<html>
+
+<head>
+    <title>서블릿 회원가입</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script type="text/javascript" src="../js/jquery-1.12.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+</head>
+
 <body style="text-align: center;">
 
     <h2>Join Page</h2>
@@ -50,35 +57,30 @@
 </body>
 <script>
     let inputId = 0;
-    function checkId(){
+    function checkId() {
         let userid = $("#userid").val(); //id값이 userid인 곳의 값 저장
         $.ajax({
-            url : '/checkId', //컨트롤러에서 인식할 주소
-            type : 'post',
-            data : {userid:userid},
-            dataType : 'text',
-            success:function (result){
-                console.log(result)
-                if(result==1){
-                    //$('#submit_btn').prop('disabled', false);
-                    $('#id_ok').css('display','block');
-                    $('#id_ok').css('color','#149123');
-                    $('#id_already').css('display','none');
+            url: '/checkId.do', //컨트롤러에서 인식할 주소
+            type: 'post',
+            data: {userid: userid},
+            dataType: 'text',
+            success: function (result) {
+                console.log("result : " + result)
+                if (result == 1) {
+                    $('#id_already').css('display', 'none');
+                    $('#id_ok').css('display', 'block');
+                    $('#id_ok').css('color', '#459405');
                     inputId = 1;
-                    console.log(inputId);
-
-                }else{
-                    //$('#submit_btn').prop('disabled', true);
-                    $('#id_already').css('display','block');
-                    $('#id_ok').css('display','none');
+                    console.log("inputId : " + inputId);
+                } else {
+                    $('#id_ok').css('display', 'none');
+                    $('#id_already').css('display', 'block');
                     inputId = 0;
-                    console.log(inputId);
+                    console.log("inputId : " + inputId);
                 }
             }
-
         })
     }
-
 
     function joinCheck() {
         const userid = document.getElementById('userid');
@@ -129,5 +131,15 @@
 
         document.getElementById('joinF').submit();
     }
+    //이메일 자동완성
+    //function change_email(){
+      //  const email_add = document.getElementById('email_add');
+        //const email_sel = document.getElementById('email_sel');
+//
+  //      const idx = email_sel.options.selectedIndex; //선택된 옵션순서
+    //    const val = email_sel.options[idx].value;    //선택된 옵션 값
+
+ //       email_add.value = val;
+ //   }
 </script>
-<c:import url="../foot.jsp" />
+</html>
