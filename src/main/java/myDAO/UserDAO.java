@@ -1,8 +1,8 @@
 package myDAO;
 
 import dbUtil.DBUtils;
+import domain.Paging;
 import domain.UsersVO;
-import org.hibernate.annotations.common.util.impl.LoggerFactory;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,6 +13,7 @@ public class UserDAO extends DBUtils {
     private PreparedStatement pstmt = null;
     private ResultSet rs = null;
     int result;
+
 
     //로그인 - id, password 일치 체크
     public int selectUserById(String inputId, String inputPw){
@@ -86,16 +87,27 @@ public class UserDAO extends DBUtils {
     //회원정보 수정
 
     //모든 회원정보 불러오기 - ArrayList로 UsersVO
-    public List<UsersVO> selectAllUserList(){
-        List<UsersVO> userList = new ArrayList<UsersVO>();
-        String SQL = "SELECT * FROM USERS ORDER BY BINARY(name)";
+    public List<UsersVO> selectAllUser(Paging paging){
+        int startNum = 1;
+        int pageSize = 10;
+
+        System.out.println(startNum);
+        System.out.println(pageSize);
+
+        /*String SQL = "SELECT @rownum:=@rownum+1, name FROM users, (SELECT @rownum:=0) TMP";*/
+        String SQL = "SELECT * FROM users ORDER BY create_at DESC LIMIT ?, ?";
+
+        List<UsersVO> userList = new ArrayList<>();
         try{
             conn = getConnection();
             pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, startNum);
+            pstmt.setInt(2, pageSize);
             rs = pstmt.executeQuery();
-            UsersVO vo;
+
             while (rs.next()){
-                vo = new UsersVO();
+                UsersVO vo = new UsersVO();
+
                 vo.setId(rs.getString("id"));
                 vo.setPassword(rs.getString("password"));
                 vo.setEmail(rs.getString("email"));
@@ -103,6 +115,7 @@ public class UserDAO extends DBUtils {
                 vo.setCreate_at(rs.getDate("create_at"));
                 vo.setUpdate_at(rs.getDate("update_at"));
                 userList.add(vo);
+
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -110,5 +123,23 @@ public class UserDAO extends DBUtils {
             close(rs, pstmt, conn);
         }
         return userList;
+    }
+
+    public int getTotalCount() {
+        int total = 0;
+        String SQL = "select count(*) from users";
+        try {
+            conn = getConnection();
+            pstmt = conn.prepareStatement(SQL);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                total = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            close(rs, pstmt, conn);
+        }
+        return total;
     }
 }

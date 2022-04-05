@@ -48,7 +48,6 @@ public class JoinController extends HttpServlet {
         UsersVO vo = new UsersVO(userId, userPw, name, email);
         UserDAO userDAO = new UserDAO();
         int result = userDAO.insertUserData(vo);
-
         String msg=(result>0)?"회원가입 성공":"회원가입 실패";
         String loc=(result>0)?"login.do":"javascript:history.back()";
 

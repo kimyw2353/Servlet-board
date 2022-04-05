@@ -18,7 +18,7 @@
 }
 /*-- Join --*/
 table tr td{
-    font-size: 20px;
+    font-size: 16px;
 }
 table tr td input{
     margin: 6px;
@@ -45,6 +45,13 @@ table tr td input{
     border-top: 1px solid #888;
     border-collapse: collapse;
 }
+.listT tr td{
+    border-bottom: 1px solid #e1e1e1;
+    padding: 3px;
+}
 /*-- Board --*/
-/*-- EditUser --*/
-
+/*-- UserList --*/
+.active{
+    background-color: aqua;
+    color: darkblue;
+}
