@@ -14,12 +14,12 @@ public class CheckIdController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
-        String userId = request.getParameter("userid");
-        response.getWriter().write(checkUserId(userId)+"");
+        String userEmail = request.getParameter("userEmail");
+        response.getWriter().write(checkUserEmail(userEmail)+"");
     }
 
-    private int checkUserId(String userId) {
+    private int checkUserEmail(String userEmail) {
         UserDAO userDAO = new UserDAO();
-        return userDAO.selectUserId(userId);
+        return userDAO.selectUserEmail(userEmail);
     }
 }

@@ -23,13 +23,13 @@ LoginController extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        String inputId = null;
+        String inputEmail = null;
         String inputPw = null;
         UsersVO usersVO;
         HttpSession session = request.getSession();
 
-        if(request.getParameter("inputId")!=null){
-            inputId = (String)request.getParameter("inputId");
+        if(request.getParameter("inputEmail")!=null){
+            inputEmail = (String)request.getParameter("inputEmail");
         }
         if(request.getParameter("inputPw")!=null){
             inputPw = (String)request.getParameter("inputPw");
@@ -37,7 +37,7 @@ LoginController extends HttpServlet {
         UserDAO userDAO = new UserDAO();
         String msg = "";
         String loc = "";
-        int result = userDAO.selectUserById(inputId, inputPw);
+        int result = userDAO.selectUserById(inputEmail, inputPw);
         if(result==-1){ //아이디 없음
             msg = "존재하지 않는 아이디입니다.";
             loc = "javascript:history.back()";
@@ -45,7 +45,7 @@ LoginController extends HttpServlet {
             msg = "비밀번호가 일치하지 않습니다.";
             loc = "javascript:history.back()";
         }else if(result==1){ //로그인 성공
-            session.setAttribute("loginUserId", inputId);
+            session.setAttribute("loginUserId", inputEmail);
             msg = (String)session.getAttribute("loginUserId")+"님 환영합니다.";
             loc = "main.do";
         }

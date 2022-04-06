@@ -14,14 +14,14 @@
     <form action="${pageContext.request.contextPath}/join.do" method="post" id="joinF" style="text-align: left; width: 500px;margin: 0 auto;">
     <table style="text-align: right; width: 500px; margin: 0 auto;">
         <tr>
-            <td class="col_1">아 이 디</td>
-            <td class="col_2 left"><input oninput="checkId()" class="inputT" type="text" id="userid" name="userid" placeholder="아이디를 입력해주세요."></td>
+            <td class="col_1">이 메 일</td>
+            <td class="col_2 left"><input oninput="checkEmail()" class="inputT" type="text" id="userEmail" name="userEmail" placeholder="이메일을 입력해주세요."></td>
         </tr>
         <tr>
             <td class="col_1"></td>
             <td class="col_2 left">
-                <span id="id_ok">사용 가능한 아이디입니다.</span>
-                <span id="id_already">이미 사용중인 아이디입니다.</span>
+                <span id="email_ok">사용 가능한 아이디입니다.</span>
+                <span id="email_already">이미 사용중인 아이디입니다.</span>
             </td>
         </tr>
         <tr>
@@ -40,11 +40,6 @@
             placeholder="이름을 입력해주세요."></td>
         </tr>
         <tr>
-            <td class="col_1">이 메 일</td>
-            <td class=" left"><input type="text" class="inputT" id="email" name="email"
-            placeholder="이메일을 입력해주세요."></td>
-        </tr>
-        <tr>
             <td colspan="2">
                 <div class="center">
                     <button class="btn" id="submit_btn" type="button" onclick="joinCheck()">회원가입</button>
@@ -56,58 +51,57 @@
     </form>
 </body>
 <script>
-    let inputId = 0;
-    function checkId() {
-        let userid = $("#userid").val(); //id값이 userid인 곳의 값 저장
+    let inputCheck = 0;
+    function checkEmail() {
+        let userEmail = $("#userEmail").val(); //id값이 userEmail인 곳의 값 저장
         $.ajax({
             url: '/checkId.do', //컨트롤러에서 인식할 주소
             type: 'post',
-            data: {userid: userid},
+            data: {userEmail: userEmail},
             dataType: 'text',
             success: function (result) {
                 console.log("result : " + result)
                 if (result == 1) {
-                    $('#id_already').css('display', 'none');
-                    $('#id_ok').css('display', 'block');
-                    $('#id_ok').css('color', '#397a07');
-                    inputId = 1;
-                    console.log("inputId : " + inputId);
+                    $('#email_already').css('display', 'none');
+                    $('#email_ok').css('display', 'block');
+                    $('#email_ok').css('color', '#397a07');
+                    inputCheck = 1;
+                    console.log("inputId : " + inputCheck);
                 } else {
                     $('#id_ok').css('display', 'none');
                     $('#id_already').css('display', 'block');
-                    inputId = 0;
-                    console.log("inputId : " + inputId);
+                    inputCheck = 0;
+                    console.log("inputId : " + inputCheck);
                 }
             }
         })
     }
 
     function joinCheck() {
-        const userid = document.getElementById('userid');
+        const email = document.getElementById('userEmail');
         const userpw = document.getElementById('userpw');
         const checkpw = document.getElementById('checkpw');
         const name = document.getElementById('name');
-        const email = document.getElementById('email');
-        console.log(inputId);
-        if (!userid.value){
-            alert('아이디를 입력해주세요');
-            userid.focus();
+        console.log(inputCheck);
+        if (!email.value){
+            alert('이메일을 입력해주세요.');
+            email.focus();
             return false;
         }
-        if(inputId==0){
+        if(inputCheck==0){
             console.log(inputId);
-            alert('다른 아이디를 입력해주세요.');
-            userid.focus();
+            alert('다른 이메일을 입력해주세요.');
+            email.focus();
             return false;
         }
         if (!userpw.value){
             alert('비밀번호를 입력해주세요');
-            userid.focus();
+            userpw.focus();
             return false;
         }
         //비밀번호 정규식
-        const pwCheck = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@!%*#?&])[A-Za-z\d$@!%*#?&]{6,13}$/;
 
+        const pwCheck = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@!%*#?&])[A-Za-z\d$@!%*#?&]{6,13}$/;
         if (!pwCheck.test(userpw.value)){
             alert('비밀번호는 영문자+숫자+특수문자 조합으로 6~13자리로 입력해주세요.');
             userpw.focus();
@@ -121,11 +115,6 @@
         if (!name.value){
             alert('이름을 입력해주세요.');
             name.focus();
-            return false;
-        }
-        if (!email.value){
-            alert('이메일을 입력해주세요.');
-            checkpw.focus();
             return false;
         }
 

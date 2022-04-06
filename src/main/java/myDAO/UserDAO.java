@@ -17,7 +17,7 @@ public class UserDAO extends DBUtils {
 
     //로그인 - id, password 일치 체크
     public int selectUserById(String inputId, String inputPw){
-        String SQL = "SELECT * FROM USERS WHERE ID=?";
+        String SQL = "SELECT * FROM USERS WHERE email=?";
         try{
             conn = getConnection();
             pstmt = conn.prepareStatement(SQL);
@@ -39,13 +39,13 @@ public class UserDAO extends DBUtils {
         return -2; //DB오류
     }
 
-    //아이디 중복체크 - id가 존재하는지 체크
-    public int selectUserId(String id){
-        String SQL = "SELECT ID FROM USERS WHERE ID=?";
+    //아이디 중복체크 - email이 존재하는지 체크
+    public int selectUserEmail(String email){
+        String SQL = "SELECT email FROM USERS WHERE email=?";
         try{
             conn = getConnection();
             pstmt = conn.prepareStatement(SQL);
-            pstmt.setString(1, id);
+            pstmt.setString(1, email);
             rs = pstmt.executeQuery();
             if(rs.next()){
                 return 0; //이미 존재
@@ -61,14 +61,13 @@ public class UserDAO extends DBUtils {
     }
 
     public int insertUserData(UsersVO vo) {
-        String SQL = "INSERT INTO USERS VALUES(?,?,?,?,DEFAULT,DEFAULT)";
+        String SQL = "INSERT INTO USERS VALUES(DEFAULT,?,?,?,DEFAULT,DEFAULT)";
         try {
             conn = getConnection();
             pstmt = conn.prepareStatement(SQL);
-            pstmt.setString(1, vo.getId());
+            pstmt.setString(1, vo.getEmail());
             pstmt.setString(2, vo.getPassword());
             pstmt.setString(3, vo.getName());
-            pstmt.setString(4, vo.getEmail());
 
             result = pstmt.executeUpdate();
 
@@ -89,20 +88,20 @@ public class UserDAO extends DBUtils {
     //모든 회원정보 불러오기 - ArrayList로 UsersVO
     public List<UsersVO> selectAllUser(Paging paging){
 
-        int startNum = paging.getStartPageNo();
+        System.out.println(paging.getPageNo());
+        int startSeq = ((paging.getPageNo()-1)*paging.getPageSize()+1);
+        System.out.println("startSeq : "+startSeq);
         int pageSize = paging.getPageSize();
-
-        System.out.println("startNum : "+startNum);
         System.out.println("pageSize : "+pageSize);
 
-        /*String SQL = "SELECT @rownum:=@rownum+1, name FROM users, (SELECT @rownum:=0) TMP";*/
-        String SQL = "SELECT * FROM users ORDER BY create_at DESC LIMIT ?, ?";
+
+        String SQL = "SELECT * FROM users ORDER BY create_at ASC LIMIT ?, ?";
 
         List<UsersVO> userList = new ArrayList<>();
         try{
             conn = getConnection();
             pstmt = conn.prepareStatement(SQL);
-            pstmt.setInt(1, startNum);
+            pstmt.setInt(1, startSeq);
             pstmt.setInt(2, pageSize);
             rs = pstmt.executeQuery();
 

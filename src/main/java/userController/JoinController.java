@@ -27,13 +27,12 @@ public class JoinController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        String userId = null;
+        String userEmail = null;
         String userPw = null;
         String name = null;
-        String email = null;
 
-        if(request.getParameter("userid")!=null){
-            userId = (String)request.getParameter("userid");
+        if(request.getParameter("userEmail")!=null){
+            userEmail = (String)request.getParameter("userEmail");
         }
         if(request.getParameter("userpw")!=null){
             userPw = (String)request.getParameter("userpw");
@@ -41,13 +40,14 @@ public class JoinController extends HttpServlet {
         if(request.getParameter("name")!=null){
             name = (String)request.getParameter("name");
         }
-        if(request.getParameter("email")!=null){
-            email = (String)request.getParameter("email");
-        }
 
-        UsersVO vo = new UsersVO(userId, userPw, name, email);
+        UsersVO vo = new UsersVO(userEmail, userPw, name);
         UserDAO userDAO = new UserDAO();
+
+        //for(int i=0;i<243;i++){
         int result = userDAO.insertUserData(vo);
+        //}
+
         String msg=(result>0)?"회원가입 성공":"회원가입 실패";
         String loc=(result>0)?"login.do":"javascript:history.back()";
 

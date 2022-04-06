@@ -4,27 +4,19 @@ import java.sql.Date;
 
 public class UsersVO {
 
-    private String id; //회원번호
+    private int idx; //회원번호
+    private String email;
     private String password; //비밀번호
     private String name; //이름
-    private String email;
     private Date create_at;
     private Date update_at;
-
 
     public UsersVO(){
 
     }
 
-    public UsersVO(String id, String password, String name, String email) {
-        this.id = id;
-        this.password = password;
-        this.name = name;
-        this.email = email;
-    }
-
-    public UsersVO(String id, String password, String name, String email, Date create_at, Date update_at) {
-        this.id = id;
+    public UsersVO(int idx, String password, String name, String email, Date create_at, Date update_at) {
+        this.idx = idx;
         this.password = password;
         this.email = email;
         this.name = name;
@@ -32,12 +24,18 @@ public class UsersVO {
         this.update_at = update_at;
     }
 
-    public String getId() {
-        return id;
+    public UsersVO(String userEmail, String userPw, String name) {
+        this.email = userEmail;
+        this.password = userPw;
+        this.name = name;
+    }
+
+    public int getIdx() {
+        return idx;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.idx = idx;
     }
 
     public String getPassword() {
@@ -83,7 +81,7 @@ public class UsersVO {
     @Override
     public String toString() {
         return "UsersVO{" +
-                "id='" + id + '\'' +
+                "id='" + idx + '\'' +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +

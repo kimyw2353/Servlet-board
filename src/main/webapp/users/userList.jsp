@@ -34,21 +34,18 @@
 </table>
 <c:if test="${paging ne null}">
     <jsp:include page="../common/paging.jsp">
-        <jsp:param name="firstPageNo" value="${pagig.firstPageNo}"/>
-        <jsp:param name="prevPageNo" value="${pagig.prevPaveNo}"/>
-        <jsp:param name="startPageNo" value="${pagig.startPageNo}"/>
-        <jsp:param name="PageNo" value="${pagig.pageNo}"/>
-        <jsp:param name="endPageNo" value="${pagig.endPageNo}"/>
-        <jsp:param name="nextPageNo" value="${pagig.nextPageNo}"/>
-        <jsp:param name="finalPageNo" value="${pagig.finalPageNo}"/>
+        <jsp:param name="pageSize" value="${paging.pageSize}"/>
+        <jsp:param name="firstPageNo" value="${paging.firstPageNo}"/>
+        <jsp:param name="prevPageNo" value="${paging.prevPageNo}"/>
+        <jsp:param name="startPageNo" value="${paging.startPageNo}"/>
+        <jsp:param name="pageNo" value="${paging.pageNo}"/>
+        <jsp:param name="endPageNo" value="${paging.endPageNo}"/>
+        <jsp:param name="nextPageNo" value="${paging.nextPageNo}"/>
+        <jsp:param name="finalPageNo" value="${paging.finalPageNo}"/>
     </jsp:include>
 </c:if>
 <c:if test="${paging eq null}">
     <h2>paging이 null</h2>
 </c:if>
 </body>
-<script>
-
-
-</script>
 </html>

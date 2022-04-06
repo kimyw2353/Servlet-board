@@ -1,25 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
+<c:url var="action" value="/userList.do"/>
+<span>firstPageNo : ${param.firstPageNo}</span>
+<span>prevPageNo : ${param.prevPageNo}</span>
+<span>startPageNo : ${param.startPageNo}</span>
+<span>pageNo : ${param.pageNo}</span>
+<span>endPageNo : ${param.endPageNo}</span>
+<span>pageSize : ${param.pageSize}</span>
 <div id="paging">
-    <c:url var="action" value="/userList.do"/>
-    <c:if test="${param.firstPageNo ne 1}">
-        <a href="${action}?page=${param.firstPageNo}"> << </a>
+    <c:if test="${param.prevPageNo > 10}">
+        <a href="${action}?page=${param.firstPageNo}"> first </a>
         <a href="${action}?page=${param.prevPageNo}"}> < </a>
     </c:if>
-    <c:forEach begin="${param.startPageNo}" end="${param.endPageNo}" step="1" var="idx">
-        <c:choose>
-            <c:when test="${param.pageNo eq idx}">
-                ${idx}
-            </c:when>
-            <c:otherwise>
-                <a href="${action}?page=${idx}">${idx}</a>
-            </c:otherwise>
-        </c:choose>
+    <c:forEach var="idx" begin="${param.startPageNo}" end="${param.endPageNo}">
+        <a href="${action}?page=${idx}">${idx}</a>
     </c:forEach>
-    <c:if test="${param.nextPageNo}">
-        <a href="${action}?page=${param.endPageNo+1}">next</a>
-    </c:if>
+        <a href="${action}?page=${param.nextPageNo}"> > </a>
+        <a href="${action}?page=${param.finalPageNo}">final</a>
 </div>

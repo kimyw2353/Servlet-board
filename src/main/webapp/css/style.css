@@ -23,12 +23,12 @@ table tr td{
 table tr td input{
     margin: 6px;
 }
-#id_ok{
+#email_ok{
     color: #fff;
     font-size: 11px;
     margin-left: 5px;
 }
-#id_already{
+#email_already{
     color: #9a1e1e;
     display: none;
     font-size: 11px;

@@ -17,22 +17,27 @@ public class UserListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDAO userDAO = new UserDAO();
-
-        int page = 1;
-        int pageSize = 5;
+        int page;
+        System.out.println("getParameter page : "+request.getParameter("page"));
         if (request.getParameter("page") != null){
             page = Integer.parseInt(request.getParameter("page"));
+        }else {
+            page = 1;
         }
+        //System.out.println("int page : "+page );
 
         Paging paging = new Paging();
         paging.setPageNo(page);
-        paging.setPageSize(pageSize);
+
+        //System.out.println("paging.getPageNo : " + paging.getPageNo());
+
+        paging.setPageSize(10);
         paging.setTotalCount(userDAO.getTotalCount());
-        System.out.println("totalCount() :"+userDAO.getTotalCount());
+
+        //System.out.println("totalCount() :"+userDAO.getTotalCount());
 
         List<UsersVO> userList = userDAO.selectAllUser(paging);
 
-        System.out.println("paging.getPageNo : " + paging.getPageNo());
 
         request.setAttribute("userList", userList);
         request.setAttribute("paging", paging);
