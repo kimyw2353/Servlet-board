@@ -88,11 +88,12 @@ public class UserDAO extends DBUtils {
 
     //모든 회원정보 불러오기 - ArrayList로 UsersVO
     public List<UsersVO> selectAllUser(Paging paging){
-        int startNum = 1;
-        int pageSize = 10;
 
-        System.out.println(startNum);
-        System.out.println(pageSize);
+        int startNum = paging.getStartPageNo();
+        int pageSize = paging.getPageSize();
+
+        System.out.println("startNum : "+startNum);
+        System.out.println("pageSize : "+pageSize);
 
         /*String SQL = "SELECT @rownum:=@rownum+1, name FROM users, (SELECT @rownum:=0) TMP";*/
         String SQL = "SELECT * FROM users ORDER BY create_at DESC LIMIT ?, ?";

@@ -19,27 +19,29 @@ public class UserListController extends HttpServlet {
         UserDAO userDAO = new UserDAO();
 
         int page = 1;
+        int pageSize = 5;
         if (request.getParameter("page") != null){
             page = Integer.parseInt(request.getParameter("page"));
         }
 
         Paging paging = new Paging();
-        paging.setPage(page);
+        paging.setPageNo(page);
+        paging.setPageSize(pageSize);
         paging.setTotalCount(userDAO.getTotalCount());
+        System.out.println("totalCount() :"+userDAO.getTotalCount());
 
         List<UsersVO> userList = userDAO.selectAllUser(paging);
 
-        System.out.println("paging.getPagNUM : " + paging.getPage());
+        System.out.println("paging.getPageNo : " + paging.getPageNo());
+
         request.setAttribute("userList", userList);
-        request.setAttribute("userPaging", paging);
+        request.setAttribute("paging", paging);
+
+        System.out.println("paging ToString : " + paging.toString());
 
         String path = "users/userList.jsp";
         RequestDispatcher rd = request.getRequestDispatcher(path);
         rd.forward(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 }

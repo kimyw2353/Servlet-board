@@ -11,11 +11,13 @@
         <td class="th" id="td_create">가입일</td>
         <td class="th" id="td_update">수정일</td>
     </tr>
+
     <c:if test="${userList eq null}">
         <tr>
             <td colspan="5">등록된 회원이 없습니다.</td>
         </tr>
     </c:if>
+
     <c:if test="${userList ne null}">
         <c:forEach items="${userList}" var="list">
             <tr>
@@ -28,16 +30,22 @@
         </c:forEach>
     </c:if>
 
-    <jsp:include page="../common/paging.jsp">
-        <jsp:param name="page" value="${userPaging.page}"/>
-        <jsp:param name="beginPage" value="${userPaging.beginPage}"/>
-        <jsp:param name="endPage" value="${userPaging.endPage}"/>
-        <jsp:param name="prev" value="${userPaging.prev}"/>
-        <jsp:param name="next" value="${userPaging.next}"/>
-    </jsp:include>
 
 </table>
-
+<c:if test="${paging ne null}">
+    <jsp:include page="../common/paging.jsp">
+        <jsp:param name="firstPageNo" value="${pagig.firstPageNo}"/>
+        <jsp:param name="prevPageNo" value="${pagig.prevPaveNo}"/>
+        <jsp:param name="startPageNo" value="${pagig.startPageNo}"/>
+        <jsp:param name="PageNo" value="${pagig.pageNo}"/>
+        <jsp:param name="endPageNo" value="${pagig.endPageNo}"/>
+        <jsp:param name="nextPageNo" value="${pagig.nextPageNo}"/>
+        <jsp:param name="finalPageNo" value="${pagig.finalPageNo}"/>
+    </jsp:include>
+</c:if>
+<c:if test="${paging eq null}">
+    <h2>paging이 null</h2>
+</c:if>
 </body>
 <script>
 
