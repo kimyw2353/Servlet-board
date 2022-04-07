@@ -34,7 +34,7 @@ public class UsersVO {
         return idx;
     }
 
-    public void setId(String id) {
+    public void setIdx(int idx) {
         this.idx = idx;
     }
 

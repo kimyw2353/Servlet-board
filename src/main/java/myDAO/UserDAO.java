@@ -87,16 +87,10 @@ public class UserDAO extends DBUtils {
 
     //모든 회원정보 불러오기 - ArrayList로 UsersVO
     public List<UsersVO> selectAllUser(Paging paging){
-
-        System.out.println(paging.getPageNo());
-        int startSeq = ((paging.getPageNo()-1)*paging.getPageSize()+1);
-        System.out.println("startSeq : "+startSeq);
+        int startSeq = paging.getStartSeq();
         int pageSize = paging.getPageSize();
-        System.out.println("pageSize : "+pageSize);
 
-
-        String SQL = "SELECT * FROM users ORDER BY create_at ASC LIMIT ?, ?";
-
+        String SQL = "SELECT * FROM users LIMIT ?, ?";
         List<UsersVO> userList = new ArrayList<>();
         try{
             conn = getConnection();
@@ -104,18 +98,15 @@ public class UserDAO extends DBUtils {
             pstmt.setInt(1, startSeq);
             pstmt.setInt(2, pageSize);
             rs = pstmt.executeQuery();
-
             while (rs.next()){
                 UsersVO vo = new UsersVO();
-
-                vo.setId(rs.getString("id"));
-                vo.setPassword(rs.getString("password"));
+                vo.setIdx(rs.getInt("idx"));
                 vo.setEmail(rs.getString("email"));
+                vo.setPassword(rs.getString("password"));
                 vo.setName(rs.getString("name"));
                 vo.setCreate_at(rs.getDate("create_at"));
                 vo.setUpdate_at(rs.getDate("update_at"));
                 userList.add(vo);
-
             }
         }catch (Exception e){
             e.printStackTrace();

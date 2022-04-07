@@ -24,25 +24,17 @@ public class UserListController extends HttpServlet {
         }else {
             page = 1;
         }
-        //System.out.println("int page : "+page );
-
         Paging paging = new Paging();
         paging.setPageNo(page);
 
-        //System.out.println("paging.getPageNo : " + paging.getPageNo());
-
         paging.setPageSize(10);
+        paging.setStartSeq(1);
         paging.setTotalCount(userDAO.getTotalCount());
-
-        //System.out.println("totalCount() :"+userDAO.getTotalCount());
 
         List<UsersVO> userList = userDAO.selectAllUser(paging);
 
-
         request.setAttribute("userList", userList);
         request.setAttribute("paging", paging);
-
-        System.out.println("paging ToString : " + paging.toString());
 
         String path = "users/userList.jsp";
         RequestDispatcher rd = request.getRequestDispatcher(path);

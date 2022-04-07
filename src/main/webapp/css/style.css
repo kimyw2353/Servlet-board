@@ -1,4 +1,8 @@
 /*-- Main --*/
+.list{
+    width: 1200px;
+    margin: 0 auto;
+}
 /*-- Login --*/
 .right{
     text-align: right;
@@ -39,19 +43,38 @@ table tr td input{
     height: 40px;
 }
 /*-- User List --*/
+.list ul{
+    width: 1200px;
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0 auto;
+}
+.list ul li button{
+    margin-top: 10px;
+}
+.list h1{
+    margin: 0 auto;
+}
 .listT{
-    width: 800px;
+    width: 850px;
     margin: 0 auto;
     border-top: 1px solid #888;
     border-collapse: collapse;
 }
 .listT tr td{
     border-bottom: 1px solid #e1e1e1;
-    padding: 3px;
+    padding: 8px;
 }
-/*-- Board --*/
-/*-- UserList --*/
-.active{
-    background-color: aqua;
-    color: darkblue;
+#paging{
+    width: 480px;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-left: 15%;
+
+}
+#paging a{
+    text-decoration: none;
+    padding: 3px;
+    color: #2c2c2c;
 }

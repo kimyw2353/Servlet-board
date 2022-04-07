@@ -11,6 +11,15 @@ public class Paging {
     private int finalPageNo; // 마지막 페이지 번호
     private int totalCount; // 게시 글 전체 수
     private int startSeq;
+    private int endSeq;
+
+    public int getEndSeq() {
+        return endSeq;
+    }
+
+    public void setEndSeq(int endSeq) {
+        this.endSeq = endSeq;
+    }
 
     public int getPageSize() {
         return pageSize;
@@ -83,7 +92,6 @@ public class Paging {
     public void setTotalCount(int totalCount) {
         this.totalCount = totalCount;
         paging();
-        System.out.println("setTotalCount Method running. . . ");
     }
 
     public int getStartSeq() {
@@ -102,7 +110,6 @@ public class Paging {
         if (this.pageSize == 0) this.setPageSize(10); // 기본 값 설정
 
         int finalPage = (totalCount + (pageSize - 1)) / pageSize; // 마지막 페이지
-        System.out.println("finalPage"+finalPage);
         if (this.pageNo > finalPage) this.setPageNo(finalPage); // 기본 값 설정
 
         if (this.pageNo < 0 || this.pageNo > finalPage) this.pageNo = 1; // 현재 페이지 유효성 체크
@@ -133,6 +140,12 @@ public class Paging {
         } else {
             this.setNextPageNo(((pageNo + 1) > finalPage ? finalPage : (pageNo + 1))); // 다음 페이지 번호
         }
+
+        int startSeq = (pageNo - 1)*pageSize;
+        int endSeq = (pageNo * pageSize);
+
+        this.setStartSeq(startSeq);
+        this.setEndSeq(endSeq);
 
         this.setFinalPageNo(finalPage);
 
