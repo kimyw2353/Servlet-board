@@ -8,7 +8,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "/join.do", value = "/join.do")
+@WebServlet("/join.do")
 public class JoinController extends HttpServlet {
 
     @Override

@@ -25,7 +25,7 @@ LoginController extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         String inputEmail = null;
         String inputPw = null;
-        UsersVO usersVO;
+        UsersVO vo = null;
         HttpSession session = request.getSession();
 
         if(request.getParameter("inputEmail")!=null){
@@ -37,17 +37,21 @@ LoginController extends HttpServlet {
         UserDAO userDAO = new UserDAO();
         String msg = "";
         String loc = "";
-        int result = userDAO.selectUserById(inputEmail, inputPw);
-        if(result==-1){ //아이디 없음
+        int result = userDAO.selectUserByEmail(inputEmail, inputPw);
+
+        if(result==1){ //로그인 성공
+            vo = new UsersVO();
+            vo = userDAO.selectUserByIdx(inputEmail);
+            session.setAttribute("loginUser", vo);
+            String loginUserName = vo.getName();
+            msg = loginUserName+"님 환영합니다.";
+            loc = "main.do";
+        }else if(result==-1){
             msg = "존재하지 않는 아이디입니다.";
             loc = "javascript:history.back()";
-        }else if(result==0){ //비밀번호 불일치치
+        }else if(result==0){
             msg = "비밀번호가 일치하지 않습니다.";
             loc = "javascript:history.back()";
-        }else if(result==1){ //로그인 성공
-            session.setAttribute("loginUserId", inputEmail);
-            msg = (String)session.getAttribute("loginUserId")+"님 환영합니다.";
-            loc = "main.do";
         }
 
         request.setAttribute("msg", msg);

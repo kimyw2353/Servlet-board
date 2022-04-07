@@ -3,15 +3,16 @@
 <c:import url="top.jsp" />
 <body style="text-align: center">
 <h1>Main Page</h1>
-<c:if test="${loginUserId eq null}">
+<c:if test="${loginUser eq null}">
     <button onclick='location.href="join.do";'>회원가입</button>
     <button onclick='location.href="login.do";'>로그인</button>
 </c:if>
-<c:if test="${loginUserId ne null}">
+<c:if test="${loginUser ne null}">
     <button onclick='location.href="logout.do";'>로그아웃</button>
     <button onclick='location.href="userList.do";'>회원목록</button>
+    <button onclick='location.href="write.do";'>글작성하기</button>
     <button onclick='location.href="boardList.do";'>글목록</button>
-    <h4>[${loginUserId}]님 로그인중. . .</h4>
+    <h4>[${loginUser.name}]님 로그인중. . .</h4>
 </c:if>
 </body>
 <c:import url="foot.jsp" />

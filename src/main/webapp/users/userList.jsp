@@ -20,7 +20,7 @@
                 <td class="th" id="td_update">수정일</td>
             </tr>
 
-            <c:if test="${userList eq null}">
+            <c:if test="${userList eq null || empty userList}">
                 <tr>
                     <td colspan="5">등록된 회원이 없습니다.</td>
                 </tr>
@@ -40,6 +40,7 @@
         </table>
         <c:if test="${paging ne null}">
             <jsp:include page="../common/paging.jsp">
+                <jsp:param name="action" value="/userList.do"/>
                 <jsp:param name="pageSize" value="${paging.pageSize}"/>
                 <jsp:param name="firstPageNo" value="${paging.firstPageNo}"/>
                 <jsp:param name="prevPageNo" value="${paging.prevPageNo}"/>

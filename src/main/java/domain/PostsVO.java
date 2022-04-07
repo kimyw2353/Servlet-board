@@ -4,19 +4,27 @@ import java.sql.Date;
 
 public class PostsVO {
     
-    private int id; //글번호
+    private int idx; //글번호
     private String title;
     private String content;
-    private int user_id; //작성자
+    private int user_idx; //작성자
     private Date create_at; //작성일
     private Date update_at; //수정일
 
-    public int getId() {
-        return id;
+    public PostsVO(){}
+
+    public PostsVO(String title, String content, int user_idx){
+        this.title = title;
+        this.content = content;
+        this.user_idx = user_idx;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getIdx() {
+        return idx;
+    }
+
+    public void setIdx(int idx) {
+        this.idx = idx;
     }
 
     public String getTitle() {
@@ -35,12 +43,12 @@ public class PostsVO {
         this.content = content;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUser_idx() {
+        return user_idx;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUser_id(int user_idx) {
+        this.user_idx = user_idx;
     }
 
     public Date getCreate_at() {

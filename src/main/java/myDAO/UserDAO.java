@@ -14,14 +14,45 @@ public class UserDAO extends DBUtils {
     private ResultSet rs = null;
     int result;
 
+    /* 회원번호로 해당 회원의 UserVO 반환 */
+    public UsersVO selectUserByIdx(String inputEmail){
+        UsersVO vo = new UsersVO();
+        String SQL = "SELECT * FROM users where email = ?";
 
-    //로그인 - id, password 일치 체크
-    public int selectUserById(String inputId, String inputPw){
+        try {
+            conn = getConnection();
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, inputEmail);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                int id = rs.getInt("idx");
+                String email = rs.getString("email");
+                String password = rs.getString("password");
+                String name = rs.getString("name");
+                Date create_at = rs.getDate("create_at");
+                Date update_at = rs.getDate("update_at");
+
+                vo.setIdx(id);
+                vo.setEmail(email);
+                vo.setPassword(password);
+                vo.setName(name);
+                vo.setCreate_at(create_at);
+                vo.setUpdate_at(update_at);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return vo;
+    }
+
+
+    /* inputEmail로 비밀번호 일치 여부 확인 */
+    public int selectUserByEmail(String inputEmail, String inputPw){
         String SQL = "SELECT * FROM USERS WHERE email=?";
         try{
             conn = getConnection();
             pstmt = conn.prepareStatement(SQL);
-            pstmt.setString(1, inputId);
+            pstmt.setString(1, inputEmail);
             rs = pstmt.executeQuery();
 
             if(rs.next()){ //아이디 확인
@@ -90,7 +121,7 @@ public class UserDAO extends DBUtils {
         int startSeq = paging.getStartSeq();
         int pageSize = paging.getPageSize();
 
-        String SQL = "SELECT * FROM users LIMIT ?, ?";
+        String SQL = "SELECT * FROM users  ORDER BY idx LIMIT ?, ?";
         List<UsersVO> userList = new ArrayList<>();
         try{
             conn = getConnection();

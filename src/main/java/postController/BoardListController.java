@@ -2,7 +2,6 @@ package postController;
 
 import domain.Paging;
 import domain.PostsVO;
-import domain.UsersVO;
 import myDAO.PostDAO;
 
 import javax.servlet.*;
@@ -15,7 +14,6 @@ import java.util.List;
 public class BoardListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         PostDAO postDAO = new PostDAO();
         int page;
         if(request.getParameter("page")!=null){
@@ -23,7 +21,6 @@ public class BoardListController extends HttpServlet {
         }else {
             page = 1;
         }
-
         Paging paging = new Paging();
         paging.setPageNo(page);
         paging.setPageSize(10);
@@ -32,10 +29,12 @@ public class BoardListController extends HttpServlet {
 
         List<PostsVO> postList = postDAO.selectAllPost(paging);
 
-        request.getParameter("postList", postList);
-        request.getParameter("paging", paging);
+        request.setAttribute("postList",postList);
+        request.setAttribute("paging",paging);
 
         String path = "posts/boardList.jsp";
+        RequestDispatcher rd = request.getRequestDispatcher(path);
+        rd.forward(request, response);
     }
 
     @Override
