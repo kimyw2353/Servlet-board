@@ -43,6 +43,7 @@ LoginController extends HttpServlet {
             vo = new UsersVO();
             vo = userDAO.selectUserByIdx(inputEmail);
             session.setAttribute("loginUser", vo);
+            session.setAttribute("loginUserIdx", vo.getIdx());
             String loginUserName = vo.getName();
             msg = loginUserName+"님 환영합니다.";
             loc = "main.do";

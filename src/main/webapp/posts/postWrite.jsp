@@ -12,7 +12,7 @@
                     </td>
                     <td>
                         <input type="text" class="inputTitle" id="content" name="content" required placeholder="내용을 입력해주세요.">
-                        <input type="hidden" value="${loginUser.idx}" name="user_idx">
+                        <input type="text" value="${loginUser.idx}" name="user_idx">
                     </td>
                     <td>
                         <button type="button" onclick="writeCheck()">글쓰기</button>

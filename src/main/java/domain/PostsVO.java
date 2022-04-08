@@ -7,7 +7,8 @@ public class PostsVO {
     private int idx; //글번호
     private String title;
     private String content;
-    private int user_idx; //작성자
+    private int user_idx; //작성자 번호
+    private String name; //작성자 이름
     private Date create_at; //작성일
     private Date update_at; //수정일
 
@@ -17,6 +18,18 @@ public class PostsVO {
         this.title = title;
         this.content = content;
         this.user_idx = user_idx;
+    }
+
+    public void setUser_idx(int user_idx) {
+        this.user_idx = user_idx;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getIdx() {

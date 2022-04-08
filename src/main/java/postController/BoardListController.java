@@ -32,7 +32,7 @@ public class BoardListController extends HttpServlet {
         request.setAttribute("postList",postList);
         request.setAttribute("paging",paging);
 
-        String path = "posts/boardList.jsp";
+        String path = "posts/postList.jsp";
         RequestDispatcher rd = request.getRequestDispatcher(path);
         rd.forward(request, response);
     }

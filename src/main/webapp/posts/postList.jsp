@@ -30,8 +30,8 @@
             <c:forEach items="${postList}" var="list">
                 <tr>
                     <td>${list.idx}</td>
-                    <td><a href="postEdit.do?idx=${list.idx}">${list.title}</a></td>
-                    <td>${list.user_idx}</td>
+                    <td><a href="postView.do?idx=${list.idx}&user_idx=${list.user_idx}">${list.title}</a></td>
+                    <td>${list.name}</td>
                     <td>${list.create_at}</td>
                     <td>${list.update_at}</td></a>
                 </tr>

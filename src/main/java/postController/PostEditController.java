@@ -12,13 +12,7 @@ import java.io.IOException;
 public class PostEditController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int idx = 0;
-        idx = Integer.parseInt(request.getParameter("idx"));
-        if(idx == 0){
-            return;
-        }
-        PostDAO postDAO = new PostDAO();
-        postDAO.editPost(idx);
+        response.sendRedirect("/main.do");
     }
 
     @Override
