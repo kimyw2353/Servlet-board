@@ -161,4 +161,9 @@ public class PostDAO extends DBUtils {
         }
         return total;
     }
+
+    /*검색 키워드*/
+    //public List<PostsVO> selectSearchPost(){
+
+    //}
 }

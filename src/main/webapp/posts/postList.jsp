@@ -11,16 +11,19 @@
             <h1>Post List</h1>
         </li>
     </ul>
-        <form action="postSearch.do"></form>
-    <table class="listT">
+    <table class="listT" id="listT">
         <tr>
             <td>
-                <form action="postSearch.do">
-                    <select name="searchSelect">
+                <form action="postSearch.do" method="post" name="searchF">
+                    <select name="type">
                         <option value="default">--선택--</option>
-                        <option value="default">--제목--</option>
-                        <option value="default">--선택--</option>
+                        <option value="title">--제목--</option>
+                        <option value="content">--내용--</option>
+                        <option value="name">--작성자--</option>
                     </select>
+                    <input type="text" name="keyword">
+                    <button type="button" onclick="getSearchList()">검색</button>
+                    <button type="button" onclick="window.location.href='postWrite.do'">글 등록</button>
                 </form>
             </td>
             <td class="th" id="td_id">글번호</td>
@@ -62,5 +65,7 @@
         </jsp:include>
     </c:if>
 </div>
+<script>
+</script>
 </body>
 </html>
