@@ -14,16 +14,6 @@ public class PostsVO {
 
     public PostsVO(){}
 
-    public PostsVO(String title, String content, int user_idx){
-        this.title = title;
-        this.content = content;
-        this.user_idx = user_idx;
-    }
-
-    public void setUser_idx(int user_idx) {
-        this.user_idx = user_idx;
-    }
-
     public String getName() {
         return name;
     }
@@ -60,7 +50,7 @@ public class PostsVO {
         return user_idx;
     }
 
-    public void setUser_id(int user_idx) {
+    public void setUser_idx(int user_idx) {
         this.user_idx = user_idx;
     }
 

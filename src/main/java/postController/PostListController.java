@@ -10,8 +10,8 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/boardList.do")
-public class BoardListController extends HttpServlet {
+@WebServlet("/postList.do")
+public class PostListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PostDAO postDAO = new PostDAO();

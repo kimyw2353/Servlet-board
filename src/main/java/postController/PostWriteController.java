@@ -26,6 +26,7 @@ public class PostWriteController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         String title = request.getParameter("title");
         String content = request.getParameter("content");
@@ -40,11 +41,11 @@ public class PostWriteController extends HttpServlet {
         PostsVO vo = new PostsVO();
         vo.setTitle(title);
         vo.setContent(content);
-        vo.setUser_id(user_idx);
+        vo.setUser_idx(user_idx);
         int result = postDAO.insertPostData(vo);
 
         String msg = (result>0)?"업로드 완료":"업로드 실패";
-        String loc = (result>0)?"boardList.do?page=1":"javascript:history.back()";
+        String loc = (result>0)?"postList.do?page=1":"javascript:history.back()";
 
         request.setAttribute("msg", msg);
         request.setAttribute("loc", loc);

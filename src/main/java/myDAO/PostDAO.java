@@ -36,10 +36,9 @@ public class PostDAO extends DBUtils {
 
     /*해당 글 정보 불러오기*/
     public PostsVO selectPostByIdx(int idx){
-        String SQL = "SELECT p.idx, p.title, p.content, u.name, p.create_at, p.update_at \n" +
+        String SQL = "SELECT p.idx, p.title, p.content, u.name, p.user_idx, p.create_at, p.update_at \n" +
                 "FROM users u JOIN posts p  \n" +
                 "ON u.idx = p.user_idx where p.idx = ?";
-        System.out.println(SQL);
         try{
             conn = getConnection();
             pstmt = conn.prepareStatement(SQL);
@@ -51,8 +50,9 @@ public class PostDAO extends DBUtils {
                 vo.setTitle(rs.getString(2));
                 vo.setContent(rs.getString(3));
                 vo.setName(rs.getString(4));
-                vo.setCreate_at(rs.getDate(5));
-                vo.setUpdate_at(rs.getDate(6));
+                vo.setUser_idx(rs.getInt(5));
+                vo.setCreate_at(rs.getDate(6));
+                vo.setUpdate_at(rs.getDate(7));
                 return vo;
             }
         }catch (Exception e){
@@ -73,6 +73,11 @@ public class PostDAO extends DBUtils {
             pstmt.setString(2, content);
             pstmt.setInt(3, idx);
             result = pstmt.executeUpdate();
+            if(result==1){
+                return result;
+            }else{
+                return 0;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
@@ -80,14 +85,36 @@ public class PostDAO extends DBUtils {
         }
         return result;
     }
-    
+
+    /*게시물 삭제*/
+    public int deletePostByIdx(int idx) {
+        String SQL = "DELETE FROM posts WHERE idx=?";
+        try{
+            conn = getConnection();
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, idx);
+            result = pstmt.executeUpdate();
+            if(result>0){
+                return result;
+            }else{
+                return 0;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(rs, pstmt, conn);
+        }
+        return 0;
+    }
+
     /*모든 글 List 로 불러오기*/
+
     public List<PostsVO> selectAllPost(Paging paging) {
         int startSeq = paging.getStartSeq();
         int pageSize = paging.getPageSize();
 
         //String SQL = "SELECT * FROM posts ORDER BY update_at desc LIMIT ?, ?";
-        String SQL = "SELECT p.idx, p.title, u.name, p.create_at, p.update_at \n" +
+        String SQL = "SELECT p.idx, p.title, u.name, p.user_idx, p.create_at, p.update_at \n" +
                 "FROM users u JOIN posts p  \n" +
                 "ON u.idx = p.user_idx \n" +
                 "LIMIT ?,?";
@@ -100,11 +127,12 @@ public class PostDAO extends DBUtils {
             rs = pstmt.executeQuery();
             while (rs.next()){
                 PostsVO vo = new PostsVO();
-                vo.setIdx(rs.getInt("idx"));
-                vo.setTitle(rs.getString("title"));
-                vo.setName(rs.getString("name"));
-                vo.setCreate_at(rs.getDate("create_at"));
-                vo.setUpdate_at(rs.getDate("update_at"));
+                vo.setIdx(rs.getInt(1));
+                vo.setTitle(rs.getString(2));
+                vo.setName(rs.getString(3));
+                vo.setUser_idx(rs.getInt(4));
+                vo.setCreate_at(rs.getDate(5));
+                vo.setUpdate_at(rs.getDate(6));
                 postList.add(vo);
             }
         }catch (Exception e){
@@ -114,8 +142,8 @@ public class PostDAO extends DBUtils {
         }
         return postList;
     }
-    
     /*게시물 총 개수 구하기*/
+
     public int getTotalCount() {
         int total = 0;
         String SQL = "SELECT count(*) FROM posts";

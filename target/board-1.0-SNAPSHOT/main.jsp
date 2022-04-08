@@ -11,7 +11,7 @@
     <button onclick='location.href="logout.do";'>로그아웃</button>
     <button onclick='location.href="userList.do";'>회원목록</button>
     <button onclick='location.href="write.do";'>글작성하기</button>
-    <button onclick='location.href="boardList.do";'>글목록</button>
+    <button onclick='location.href="postList.do";'>글목록</button>
     <h4>[${loginUser.name}]님 로그인중. . .</h4>
 </c:if>
 </body>

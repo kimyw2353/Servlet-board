@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="../top.jsp" />
 <body>
@@ -11,8 +11,18 @@
             <h1>Post List</h1>
         </li>
     </ul>
+        <form action="postSearch.do"></form>
     <table class="listT">
         <tr>
+            <td>
+                <form action="postSearch.do">
+                    <select name="searchSelect">
+                        <option value="default">--선택--</option>
+                        <option value="default">--제목--</option>
+                        <option value="default">--선택--</option>
+                    </select>
+                </form>
+            </td>
             <td class="th" id="td_id">글번호</td>
             <td class="th" id="td_name">제목</td>
             <td class="th" id="td_email">작성자</td>
